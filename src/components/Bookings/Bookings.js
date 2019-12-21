@@ -22,15 +22,27 @@ const Bookings = ({ location }) => {
   if (bookings.length === 0) return <p>Cargando reservaciones...</p>
 
   return (
-    <div className="col-md-4">
-      <ul className="list-group">
-        {
-          bookings.map(booking => (
-            <ListBookings booking={booking} key={booking._id} />
-          ))
-        }
-      </ul>
-      <Pagination />
+    <div className="container-fluid">
+      <div className="card p-2 shadow-sm">
+        <table className="table table-sm">
+          <thead class="bg-primary text-white">
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Email</th>
+              <th scope="col">Clinica</th>
+              <th scope="col">Medicaciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              bookings.map(booking => (
+                <ListBookings booking={booking} key={booking._id} />
+              ))
+            }
+          </tbody>
+        </table>
+        <Pagination />
+      </div>
     </div>
   );
 }

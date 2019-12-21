@@ -36,7 +36,6 @@ const Explorations = ({ match }) => {
           </div>
           : <p>No hay medicaciones!! </p>
       }
-
     </div>
   );
 }

@@ -7,25 +7,25 @@ const Pagination = () => {
     <div>
       <ul className="pagination pagination-sm">
         <li className="page-item disabled">
-          <a className="page-link" href={`?page=${initial_page - 1}&limit=5`}>&laquo;</a>
+          <a className="page-link" href={`?page=${initial_page - 1}&limit=12`}>&laquo;</a>
         </li>
         <li className="page-item active">
-          <a className="page-link" href={`?page=${initial_page}&limit=5`}>1</a>
+          <a className="page-link" href={`?page=${initial_page}&limit=12`}>1</a>
         </li>
         <li className="page-item">
-          <a className="page-link" href={`?page=${initial_page + 1}&limit=5`}>2</a>
+          <a className="page-link" href={`?page=${initial_page + 1}&limit=12`}>2</a>
         </li>
         <li className="page-item">
-          <a className="page-link" href={`?page=${initial_page + 2}&limit=5`}>3</a>
+          <a className="page-link" href={`?page=${initial_page + 2}&limit=12`}>3</a>
         </li>
         <li className="page-item">
-          <a className="page-link" href={`?page=${initial_page + 3}&limit=5`}>4</a>
+          <a className="page-link" href={`?page=${initial_page + 3}&limit=12`}>4</a>
         </li>
         <li className="page-item">
-          <a className="page-link" href={`?page=${initial_page + 4}&limit=5`}>5</a>
+          <a className="page-link" href={`?page=${initial_page + 4}&limit=12`}>5</a>
         </li>
         <li className="page-item">
-          <a className="page-link" href={`?page=${initial_page + 1}&limit=5`}>&raquo;</a>
+          <a className="page-link" href={`?page=${initial_page + 1}&limit=12`}>&raquo;</a>
         </li>
       </ul>
     </div>
