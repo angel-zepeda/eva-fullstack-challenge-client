@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import { SERVER } from '../../consts';
 import Spinner from '../Spinner';
 import Notice from '../Notice';
@@ -46,7 +46,6 @@ const Login = () => {
         : null
       }
       <div className="col-md-4 col-sm-12 mx-auto card mt-5 p-4">
-
         <h2 className="text-center">Iniciar sesión</h2>
         <form onSubmit={handleOnSubmit} className="form-group card-body p-2">
           <label htmlFor="email">Email: </label>
@@ -73,6 +72,11 @@ const Login = () => {
           >
             Iniciar sesión
           </button >
+          <Link
+            className="btn btn-success col-md-12 mt-1"
+            to="/registro"
+          >Registrarse
+          </Link>
         </form>
       </div>
       {

@@ -25,7 +25,7 @@ const Bookings = ({ location }) => {
     <div className="container-fluid">
       <div className="card p-2 shadow-sm">
         <table className="table table-sm">
-          <thead class="bg-primary text-white">
+          <thead className="bg-primary text-white">
             <tr>
               <th scope="col">Nombre</th>
               <th scope="col">Email</th>
