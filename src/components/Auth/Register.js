@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Spinner from '../Spinner';
 import { SERVER } from '../../consts';
 import axios from 'axios';
@@ -16,6 +16,7 @@ const Register = () => {
 
   const register = async () => {
     const response = await axios.post(SERVER + '/register', user);
+    setShowSpinner(false);
     console.log(response);
   }
 

@@ -1,41 +1,45 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import ListExplorations from './ListExplorations';
+import Pagination from '../Pagination';
 import { SERVER } from '../../consts';
+import axios from 'axios';
+import Filter from '../Filter';
 
-const Explorations = ({ match }) => {
+const Explorations = ({ location }) => {
 
-  const [medications, setMedications] = useState([]);
+  let page = location.search.split('&')[0].split('=')[1];
+  let limit = location.search.split('&')[1].split('=')[1];
+
+  const [explorations, setExplorations] = useState();
 
   useEffect(() => {
-    const getExploration = async () => {
-      const { data } = await axios.get(SERVER + `exploration/booking/${match.params.id}`);
-      setMedications(data.data[0].consumedMedications)
-
+    const getExplorations = async () => {
+      const { data } = await axios.get(SERVER + `explorations/?page=${page}&limit=${limit}`)
+      setExplorations(data.data)
     }
+    getExplorations();
+  }, [page, limit]);
 
-    getExploration();
-  }, [match]);
-
-
-  if (!medications) return <p>Cargando medicaciones...</p>
+  if (!explorations) return <h1>Cargando exploraciones...</h1>
 
   return (
-    <div>
-      <h2 className="text-primary">Medicamentos consumidos</h2>
-      {
-        medications.length > 0 ?
-          <div className="card col-md-4 p-3">
-            {
-              medications.map(medication => (
-                <div>
-                  <p>{medication}</p>
-                  <hr />
-                </div>
-              ))
-            }
-          </div>
-          : <p>No hay medicaciones!! </p>
-      }
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col-md-3">
+          <h3>Exploraciones</h3>
+        </div>
+        <div className="col-md-9">
+          <Filter />
+        </div>
+      </div>
+      <div className="row">
+        {
+          explorations.map(exploration => (
+            <ListExplorations exploration={exploration} key={exploration._id} />
+          ))
+        }
+      </div>
+      <Pagination />
     </div>
   );
 }

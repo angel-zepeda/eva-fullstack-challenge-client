@@ -36,7 +36,7 @@ const Login = () => {
     }
   }
 
-  if (access) return <Redirect to="/bookings/?page=0&limit=12" />
+  if (access) return <Redirect to="/exploraciones/?page=0&limit=15" />
 
   return (
     <div>
