@@ -29,16 +29,17 @@ const Explorations = ({ location }) => {
           <h3>Exploraciones</h3>
         </div>
         <div className="col-md-9">
-          <Filter />
+          <Filter setExplorations={setExplorations} />
         </div>
       </div>
-      <div className="row">
+      <div className="row" style={{ height: '80vh', margin: '0 auto' }}>
         {
           explorations.map(exploration => (
             <ListExplorations exploration={exploration} key={exploration._id} />
           ))
         }
       </div>
+      <hr />
       <Pagination />
     </div>
   );

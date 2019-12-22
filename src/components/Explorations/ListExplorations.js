@@ -3,8 +3,10 @@ import React from 'react';
 const ListExplorations = ({ exploration }) => {
 
   return (
-    <div className="card shadow-sm col-md-2 m-1 p-2">
-      <p><span className="text-primary">Nombre: </span>{exploration.bookingId.name}</p>
+    <div className="card shadow-sm col-md-2 m-1 p-1">
+      <div className="card-header bg-primary text-white p-1 pl-0">
+        <strong className="text-white">{exploration.bookingId.name}</strong>
+      </div>
       <p><span className="text-primary">Email: </span> {exploration.bookingId.email}</p>
       <p><span className="text-primary">Clínica: </span> {exploration.bookingId.clinicName}</p>
       <p><span className="text-primary">Medicaciones: </span>
