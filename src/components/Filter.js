@@ -6,22 +6,22 @@ const Filter = ({ setExplorations }) => {
 
   let page = window.location.search.split('&')[0].split('=')[1];
   let limit = window.location.search.split('&')[1].split('=')[1];
+  const [strict, setStrict] = useState('');
 
   const [search, setSearch] = useState({
     clinic: '',
     medications: '',
-    strict: false
   });
+
+  const mode = e => { setStrict(e.target.checked) }
 
   const filterForm = e => {
     setSearch({ ...search, [e.target.name]: e.target.value })
-    if (e.target.value === "") return window.location.reload(true);
   }
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(search)
-    getExplorationsByClinic(search.clinic, search.medications, page, limit, search.strict)
+    getExplorationsByClinic(search.clinic, search.medications, page, limit, strict)
   }
 
   const getExplorationsByClinic = async (clinic, medications, page, limit, mode) => {
@@ -54,7 +54,7 @@ const Filter = ({ setExplorations }) => {
       />
       <div className="form-check m-2">
         <label className="form-check-label">
-          <input className="form-check-input" name="strict" onChange={filterForm} type="checkbox" value={!search.strict} />
+          <input className="form-check-input" name="strict" onChange={mode} type="checkbox" value={!search.strict} />
           <span className="text-info">Default: LAX</span>
         </label>
       </div>
