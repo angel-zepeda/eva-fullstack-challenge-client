@@ -20,6 +20,7 @@ const Filter = ({ setExplorations }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (search.clinic === "") window.location.reload(true)
     getExplorationsByClinic(search.clinic, search.medications, page, limit, strict)
   }
 
@@ -34,7 +35,7 @@ const Filter = ({ setExplorations }) => {
     const auth = { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } };
     const response = await axios.get(API_URL + `/explorations/search/?clinic=${clinic}&medications=${medications}&page=${page}&limit=${limit}&strict=${mode}`, auth)
     // if theres not coincidences will refresh page
-    if (response.data.data.length === 0) window.location.reload(true);
+
     setExplorations(response.data.data);
   }
 
@@ -48,7 +49,7 @@ const Filter = ({ setExplorations }) => {
         onChange={filterForm}
         className="form-control col-md-3"
       >
-        <option value="">Todas las clínicas</option>
+        <option value="">Clínicas</option>
         <option value="ANGELOPOLIS">ANGELOPOLIS</option>
         <option value="SANTA_FE">SANTA_FE</option>
         <option value="SOLESTA">SOLESTA</option>
