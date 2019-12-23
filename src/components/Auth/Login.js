@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Redirect, Link } from 'react-router-dom'
-import { SERVER } from '../../consts';
+import { API_URL } from '../../consts';
 import Spinner from '../Spinner';
 import Notice from '../Notice';
 
@@ -23,7 +23,7 @@ const Login = () => {
 
   const login = async () => {
     setShowSpinner(true);
-    const response = await axios.post(SERVER + '/login', user);
+    const response = await axios.post(API_URL + '/login', user);
     if (response.data.code === 200) {
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', response.data.user.email);

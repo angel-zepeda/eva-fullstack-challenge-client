@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ListExplorations from './ListExplorations';
 import Pagination from '../Pagination';
-import { SERVER } from '../../consts';
+import { API_URL } from '../../consts';
 import axios from 'axios';
 import Filter from '../Filter';
 
@@ -13,8 +13,9 @@ const Explorations = ({ location }) => {
   const [explorations, setExplorations] = useState();
 
   useEffect(() => {
+    const auth = { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } };
     const getExplorations = async () => {
-      const { data } = await axios.get(SERVER + `explorations/?page=${page}&limit=${limit}`)
+      const { data } = await axios.get(API_URL + `explorations/?page=${page}&limit=${limit}`, auth)
       setExplorations(data.data)
     }
     getExplorations();

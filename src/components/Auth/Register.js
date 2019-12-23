@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Spinner from '../Spinner';
-import { SERVER } from '../../consts';
+import { API_URL } from '../../consts';
 import axios from 'axios';
 
 const Register = () => {
@@ -15,7 +15,7 @@ const Register = () => {
   }
 
   const register = async () => {
-    const response = await axios.post(SERVER + '/register', user);
+    const response = await axios.post(API_URL + '/register', user);
     setShowSpinner(false);
     console.log(response);
   }

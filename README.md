@@ -5,7 +5,7 @@
 - [] At least one react component should be tested.
 - [x] It should be easy for your teammates to understand your repo and use your code in the unfortunate case of your sudden combustion.
 
-- Theres a file that contains API_URL to make request, chage SERVER const in case you need it
+- Theres a file that contains API_URL to make request, chage this const in case you need it
 ```bash
   /src/const.js
 ```

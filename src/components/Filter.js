@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { SERVER } from '../consts';
+import { API_URL } from '../consts';
 
 const Filter = ({ setExplorations }) => {
 
@@ -25,7 +25,8 @@ const Filter = ({ setExplorations }) => {
   }
 
   const getExplorationsByClinic = async (clinic, medications, page, limit, mode) => {
-    const response = await axios.get(SERVER + `/explorations/search/?clinic=${clinic}&medications=${medications}&page=${page}&limit=${limit}&strict=${mode}`)
+    const auth = { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } };
+    const response = await axios.get(API_URL + `/explorations/search/?clinic=${clinic}&medications=${medications}&page=${page}&limit=${limit}&strict=${mode}`, auth)
     console.log(response);
     setExplorations(response.data.data);
   }
