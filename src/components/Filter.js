@@ -7,7 +7,6 @@ const Filter = ({ setExplorations }) => {
   let page = window.location.search.split('&')[0].split('=')[1];
   let limit = window.location.search.split('&')[1].split('=')[1];
   const [strict, setStrict] = useState('');
-
   const [search, setSearch] = useState({
     clinic: '',
     medications: '',
@@ -27,7 +26,7 @@ const Filter = ({ setExplorations }) => {
   const getExplorationsByClinic = async (clinic, medications, page, limit, mode) => {
     const auth = { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } };
     const response = await axios.get(API_URL + `/explorations/search/?clinic=${clinic}&medications=${medications}&page=${page}&limit=${limit}&strict=${mode}`, auth)
-    console.log(response);
+    if (response.data.data.length === 0) window.location.reload(true);
     setExplorations(response.data.data);
   }
 
@@ -41,7 +40,7 @@ const Filter = ({ setExplorations }) => {
         onChange={filterForm}
         className="form-control col-md-3"
       >
-        <option value="">Clínica</option>
+        <option value="">Todas las clínicas</option>
         <option value="ANGELOPOLIS">ANGELOPOLIS</option>
         <option value="SANTA_FE">SANTA_FE</option>
         <option value="SOLESTA">SOLESTA</option>
@@ -55,7 +54,13 @@ const Filter = ({ setExplorations }) => {
       />
       <div className="form-check m-2">
         <label className="form-check-label">
-          <input className="form-check-input" name="strict" onChange={mode} type="checkbox" value={!search.strict} />
+          <input
+            className="form-check-input"
+            name="strict"
+            onChange={mode}
+            type="checkbox"
+            value={!search.strict}
+          />
           <span className="text-info">Default: LAX</span>
         </label>
       </div>

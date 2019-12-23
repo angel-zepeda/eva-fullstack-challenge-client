@@ -41,7 +41,9 @@ const Explorations = ({ location }) => {
         }
       </div>
       <hr />
-      <Pagination />
+      <div className="col-md-12">
+        <Pagination />
+      </div>
     </div>
   );
 }
