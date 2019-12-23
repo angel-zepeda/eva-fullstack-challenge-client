@@ -7,6 +7,10 @@ import Filter from '../Filter';
 
 const Explorations = ({ location }) => {
 
+  /**
+   * page its got with split query params for search explorations
+   * limit its got with split query params for search explorations
+   */
   let page = location.search.split('&')[0].split('=')[1];
   let limit = location.search.split('&')[1].split('=')[1];
 
@@ -14,6 +18,9 @@ const Explorations = ({ location }) => {
 
   useEffect(() => {
     const auth = { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } };
+    /**
+     * getExplorations will return all explorations and set data in exploration hook
+     */
     const getExplorations = async () => {
       const { data } = await axios.get(API_URL + `explorations/?page=${page}&limit=${limit}`, auth)
       setExplorations(data.data)
@@ -21,6 +28,9 @@ const Explorations = ({ location }) => {
     getExplorations();
   }, [page, limit]);
 
+  /**
+   * show loading if theres not explorations yet
+   */
   if (!explorations) return <h1>Cargando exploraciones...</h1>
 
   return (
@@ -36,6 +46,9 @@ const Explorations = ({ location }) => {
       <div className="row" style={{ height: '80vh', margin: '0 auto' }}>
         {
           explorations.map(exploration => (
+            /**
+             * ListExplorations component will list cards with bookings and explorations found
+             */
             <ListExplorations exploration={exploration} key={exploration._id} />
           ))
         }

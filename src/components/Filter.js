@@ -23,9 +23,17 @@ const Filter = ({ setExplorations }) => {
     getExplorationsByClinic(search.clinic, search.medications, page, limit, strict)
   }
 
+  /**
+   * @clinic is the param to search by clinic
+   * @medications medications to filter 
+   * @page is a number to paginate explorations in server
+   * @limit is a number to show how many exploration show
+   * @mode strict = true, default = false = lax
+   */
   const getExplorationsByClinic = async (clinic, medications, page, limit, mode) => {
     const auth = { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } };
     const response = await axios.get(API_URL + `/explorations/search/?clinic=${clinic}&medications=${medications}&page=${page}&limit=${limit}&strict=${mode}`, auth)
+    // if theres not coincidences will refresh page
     if (response.data.data.length === 0) window.location.reload(true);
     setExplorations(response.data.data);
   }

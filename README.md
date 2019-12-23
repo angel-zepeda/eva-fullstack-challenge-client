@@ -1,7 +1,7 @@
 # Eva-fullstack-challenge-client
 - [x] Build a web app written in ReactJS.
 - [x] Implement a view that allows users to introduce a clinic name, a list of medications and a checkbox for strict or lax mode. This view will request the explorations with the provided params and should list the explorations found.
-- [] Your web app should be documented.
+- [x] Your web app should be documented.
 - [] At least one react component should be tested.
 - [x] It should be easy for your teammates to understand your repo and use your code in the unfortunate case of your sudden combustion.
 
@@ -18,7 +18,7 @@
   REGISTER PAGE: localhost:3000/registro
 ```
 
-- Query params example
+- Query params example for list explorations
 ```bash
   EXPLORATIONS PAGE: localhost:3000/exploraciones/?page=0&limit=15
 ```
